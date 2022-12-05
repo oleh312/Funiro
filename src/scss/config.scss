@@ -1,0 +1,123 @@
+// IMPORTS
+@import "default/reset";
+@import "default/bootstrap-grid-system";
+
+// COLORS
+$accent: #646464;
+
+// GENERAL DOCUMENT STYLES
+::selection {
+  background-color: grey;
+  color: #fff;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  min-width: 320px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-size: 16px;
+  position: relative;
+  overflow-x: hidden;
+  background: $accent;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: black;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $accent;
+    border-radius: 15px;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+// CUSTOME CLASS
+.wrapper {
+  min-height: 100%;
+}
+
+._lock {
+  overflow: hidden;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.none {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s linear;
+}
+
+// for ibg func
+.ibg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.ibg img {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+// ADAPTIV-FONT
+$maxWidth: 1920;
+$maxWidthContainer: 1200;
+
+@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+  $addSize: $startSize - $minSize;
+
+  @if $type==1 {
+    // ONLY IF LESS CONTAINER
+    #{$property}: $startSize + px;
+
+    @media (max-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$addSize} *
+          ((100vw - 320px) / #{$maxWidthContainer - 320})
+      );
+    }
+  } @else if $type==2 {
+    // ONLY IF MORE CONTAINER
+    #{$property}: $startSize + px;
+
+    @media (min-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
+      );
+    }
+  } @else {
+    // ALWAYS
+    #{$property}: calc(
+      #{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
+    );
+  }
+}
+
+// @include adaptiv-value('padding', 50, 10, 0);
+// @include adaptiv-value('font-size', 30, 16, 0);
