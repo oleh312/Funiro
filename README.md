@@ -2,17 +2,17 @@
 
 ## How to use
 
-1 Open terminal in a folder
+1 Clone this repository
 
-2 Write in the terminal:
+2 Open terminal in a folder
+
+3 Write in the terminal:
 
 - Install Node Modules: **npm i**
 
 - Run for development: **npm run dev**
 
 - Run for production: **npm run build**
-
-- Archive for production: **npm run zip**
 
 ## Roadmap
 
